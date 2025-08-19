@@ -1,0 +1,60 @@
+#Quick sort in python 
+
+##Function to find the partition position
+def partition(A, low, high):
+
+    #Choosing the rightmost element as partition
+    pivot = A[high]
+
+    ## pointer for greater element 
+    i = low - 1
+
+    #Compare each element with the pivot 
+    for j in range(low, high):
+        if A[j] <= pivot: 
+            # If element smaller than the pivot is found,
+            #swap it with the greater element pointed by i 
+            i = i+1
+
+            # Swapping element at i with element at j 
+            (A[i],A[j]) = (A[j],A[i])
+
+        #Swap the pivot element with the greater element specified by i 
+        (A[i+1],A[high]) = (A[high],A[i+1])
+
+        # Return the position from which the partition is done 
+        return i+1
+
+#function to perform quicksort
+def quickSort(A, low, high):
+    if low < high:
+
+         #find pivot element such that 
+        #element smaller than the pivot are on he left 
+        #elements larger than the pivot are on the right
+        pi = partition(A, low, high)
+
+        #Recursive call on the left of the pivot 
+        quickSort(A, low, pi -1)
+
+        #Recursive call on the right of the pivot
+        quickSort(A, pi+1, high)
+
+size = int(input("Enter size of the array: "))
+A = []
+
+print("Enter the elements: ")
+for i in range(size):
+    num = int(input(f"Element {i+1}: "))
+    A.append(num)
+
+print("Unsorted array: ")
+print(A)
+
+n = len(A)-1
+
+quickSort(A, 0, n)
+
+
+print("Sorted array:")
+print(A)
