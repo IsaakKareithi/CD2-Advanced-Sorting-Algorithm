@@ -22,4 +22,5 @@ for i in range(size):
     A.append(num)
 
 print("original array: ",A)
+
 print(A)
